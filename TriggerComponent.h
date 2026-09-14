@@ -35,4 +35,23 @@ public:
 	
 	// Store the ptr of the Actor own the Mover Component so we can use it inside the Trigger Component class
 	UMover* Mover;
+	
+	
+	UFUNCTION()
+	void OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, 
+		UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
+		
+	
+	UFUNCTION()
+	void OnOverlapEnd(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, 
+		UPrimitiveComponent* OtherComp, int32 OtherBodyIndex);
+	
+	UPROPERTY(EditAnywhere)
+	bool IsPressurePlate = false;
+	
+	UPROPERTY(VisibleAnywhere)
+	bool IsTriggered = false;
+	
+	UFUNCTION()
+	void Trigger(bool NewTriggerValue);
 };

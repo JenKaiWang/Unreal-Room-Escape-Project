@@ -59,7 +59,7 @@ void UMover::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponent
 		// VInterpConstantTo is a “move toward a target at a constant rate” helper.
 		FVector NewLocation = FMath::VInterpConstantTo(CurrentLocation, TargetLocation, DeltaTime, Speed);
 		
-		// Update the location of the actor that owns this component in every frame 
+		// Update the location of the actor that owns this component in every frame  
 		GetOwner()->SetActorLocation(NewLocation);
 	}
 }
