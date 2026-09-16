@@ -33,6 +33,9 @@ public:
 	UPROPERTY(EditAnywhere)
 	AActor* MoverActor;
 	
+	UPROPERTY(VisibleAnywhere)
+	int32 ActivatorCount = 0;
+	
 	// Store the ptr of the Actor own the Mover Component so we can use it inside the Trigger Component class
 	UMover* Mover;
 	

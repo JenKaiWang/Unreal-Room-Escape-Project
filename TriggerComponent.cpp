@@ -61,7 +61,7 @@ void UTriggerComponent::Trigger(bool NewTriggerValue)
 	
 	if (Mover)
 	{
-		Mover->ShouldMove = IsTriggered;
+		Mover->SetShouldMove(IsTriggered);
 	}
 	else
 	{
@@ -77,6 +77,9 @@ void UTriggerComponent::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AAct
 	// Check if the OtherActor has the tag "PressurePlateActivator", if it does, we will set the ShouldMove to true
 	if (OtherActor && OtherActor->ActorHasTag("PressurePlateActivator"))
 	{
+		//Track how many activator on top of the pressure plate
+		ActivatorCount++;
+		
 		if (!IsTriggered)
 		{
 			Trigger(true);
@@ -90,7 +93,10 @@ void UTriggerComponent::OnOverlapEnd(UPrimitiveComponent* OverlappedComp, AActor
 {
 	if (OtherActor && OtherActor->ActorHasTag("PressurePlateActivator"))
 	{
-		if (IsTriggered)
+		
+		ActivatorCount--;
+		
+		if (IsTriggered && ActivatorCount == 0)
 		{
 			Trigger(false);
 		}

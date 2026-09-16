@@ -24,6 +24,7 @@ void UMover::BeginPlay()
 	//AActor* MyOwner = GetOwner();
 	
 	StartLocation = GetOwner()->GetActorLocation();
+	SetShouldMove(false);
 	
 	//UE_LOG(Log Temp, Warning, TEXT("Actor owner is %s"), *GetOwner()->GetActorNameOrLabel());
 	
@@ -37,15 +38,6 @@ void UMover::BeginPlay()
 void UMover::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
-	
-	if (ShouldMove == true)
-	{
-		TargetLocation = StartLocation + MoveOffset;
-	}
-	else
-	{
-		TargetLocation = StartLocation;
-	}
 	
 	FVector CurrentLocation = GetOwner()->GetActorLocation();
 	
@@ -64,3 +56,23 @@ void UMover::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponent
 	}
 }
 
+// Getter function
+bool UMover::GetShouldMove()
+{
+	return ShouldMove;
+}
+
+// Setter function
+void UMover::SetShouldMove(bool NewShouldMove)
+{
+	ShouldMove = NewShouldMove;
+	
+	if (ShouldMove == true)
+	{
+		TargetLocation = StartLocation + MoveOffset;
+	}
+	else
+	{
+		TargetLocation = StartLocation;
+	}
+}
