@@ -67,6 +67,7 @@ void UTriggerComponent::Trigger(bool NewTriggerValue)
 	{
 		UE_LOG(LogTemp, Warning, TEXT("%s doesn't have a mover to trigger"), *GetOwner()->GetActorNameOrLabel());
 	}
+	
 }
 
 // This function will be called when the player character overlap with the trigger box, 
